@@ -1,9 +1,9 @@
 version: "3"
 
 services:
- simple_rabbitmq_message:
+ simple-rabbitmq-project:
    build: .
-   container_name: rabbitmq-message-rest
+   container_name: rabbitmq-project-rest
    ports:
      - 3000:3333
    depends_on: 
