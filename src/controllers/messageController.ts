@@ -17,7 +17,7 @@ const messageController = {
     try {
       const rmq = new RabbitMQService();
       await rmq.start();
-      const status = rmq.putMessageInQueue(
+      const status = await rmq.putMessageInQueue(
         process.env.TOPIC,
         JSON.stringify(req.body)
       );
