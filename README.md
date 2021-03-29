@@ -15,3 +15,9 @@ O projeto utiliza NodeJs na versão 14.
 5. para fazer uma build para es5 rode o comando `npm run build`
 6. para rodar a build em es5 `npm run build:start`
 7. para rodar os testes de integração `npm run test`
+
+## Documentação
+
+Ambiente local: http://localhost:3333/docs
+
+![alt text](./swagger/doc.png)
