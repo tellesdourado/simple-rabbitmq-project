@@ -1,0 +1,109 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "projeto de envio e recebimento via http de mensagem com reabbitmq",
+    "version": "1.0.0",
+    "title": "simple-rabbitmq-project",
+
+    "contact": {
+      "email": "tellesdourado@gmail.com"
+    },
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "host": "localhost:3333",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "message"
+    }
+  ],
+  "schemes": ["http"],
+  "paths": {
+    "/message": {
+      "post": {
+        "tags": ["message"],
+        "summary": "envio de mensagem",
+        "description": "",
+        "operationId": "envio de mensagem",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "message",
+            "in": "body",
+            "required": true,
+            "schema": {"$ref": "#/definitions/postMessageBody"}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sucesso na operação",
+            "schema": {
+              "$ref": "#/definitions/postMessage"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["message"],
+        "summary": "envio de mensagem",
+        "description": "",
+        "operationId": "recebimento de mensagem",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "sucesso na operação",
+            "schema": {
+              "$ref": "#/definitions/getMessage"
+            }
+          }
+        }
+      }
+    }
+    
+  },
+
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "postMessage": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean"
+        }
+      }
+    },
+    "postMessageBody":{
+        "type":"object",
+        "properties": {
+            "message":{
+                "type":"string",
+                "default":"mensagem de teste"
+            }
+        }
+    },
+    "getMessage": {
+        "type": "object",
+        "properties": {
+          "messages": {
+            "type": "array",
+            "items": {"type":"object", "properties": {
+                "message":{
+                    "type":"string"
+                }
+            }}
+          }
+        }
+    }
+  }
+}
