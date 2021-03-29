@@ -34,7 +34,7 @@
             "name": "message",
             "in": "body",
             "required": true,
-            "schema": {"$ref": "#/definitions/postMessageBody"}
+            "schema": { "$ref": "#/definitions/postMessageBody" }
           }
         ],
         "responses": {
@@ -64,7 +64,6 @@
         }
       }
     }
-    
   },
 
   "securityDefinitions": {
@@ -83,27 +82,30 @@
         }
       }
     },
-    "postMessageBody":{
-        "type":"object",
-        "properties": {
-            "message":{
-                "type":"string",
-                "default":"mensagem de teste"
-            }
+    "postMessageBody": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "default": "mensagem de teste"
         }
+      }
     },
     "getMessage": {
-        "type": "object",
-        "properties": {
-          "messages": {
-            "type": "array",
-            "items": {"type":"object", "properties": {
-                "message":{
-                    "type":"string"
-                }
-            }}
+      "type": "object",
+      "properties": {
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
           }
         }
+      }
     }
   }
 }
