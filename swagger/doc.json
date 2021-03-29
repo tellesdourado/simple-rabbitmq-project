@@ -48,7 +48,7 @@
       },
       "get": {
         "tags": ["message"],
-        "summary": "envio de mensagem",
+        "summary": "recebimento de mensagem",
         "description": "",
         "operationId": "recebimento de mensagem",
         "consumes": ["application/json"],
