@@ -1,6 +1,23 @@
 version: "3"
 
 services:
+ rabbitmq:
+   image: "rabbitmq:3.8-management-alpine"
+   container_name: simple-rabbit-mq-container
+   hostname: rabbitmq
+   ports:
+     - "15672:15672" #porta do painel admin
+     - "5672:5672"
+   environment:
+     - RABBITMQ_DEFAULT_USER=admin
+     - RABBITMQ_DEFAULT_PASS=admin
+   healthcheck:
+    test: rabbitmq-diagnostics -q ping
+    interval: 30s
+    timeout: 30s
+    retries: 3
+
+
  simple-rabbitmq-project:
    build: .
    container_name: rabbitmq-project-rest
@@ -13,16 +30,10 @@ services:
     - PORT=3333
    ports:
      - 3333:3333
-   depends_on: 
+   links:
      - rabbitmq
+   depends_on:
+     - rabbitmq
+     
 
- rabbitmq:
-   image: "rabbitmq:3.8-management-alpine"
-   container_name: simple-rabbit-mq-container
-   hostname: rabbitmq
-   ports:
-     - "15672:15672" #porta do painel admin
-     - "5672:5672" 
-   environment:
-     - RABBITMQ_DEFAULT_USER=admin
-     - RABBITMQ_DEFAULT_PASS=admin
+ 
