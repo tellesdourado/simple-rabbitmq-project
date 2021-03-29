@@ -15,11 +15,16 @@ const messageController = {
 
   async create(req: Request, res: Response) {
     try {
+      const { message } = req.body;
+      if (!message) {
+        return res.status(400).send({ error: "unexpected parameters" });
+      }
+
       const rmq = new RabbitMQService();
       await rmq.start();
       const status = await rmq.putMessageInQueue(
         process.env.TOPIC,
-        JSON.stringify(req.body)
+        JSON.stringify({ message })
       );
       return res.status(200).send({ status });
     } catch (e) {
